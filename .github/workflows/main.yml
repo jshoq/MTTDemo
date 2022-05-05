@@ -38,7 +38,7 @@ jobs:
           # Provide the target region, only required for management Group or Subscription deployments.
           region: WestUS3
           # Provide the name of a resource group, only required for resource Group deployments.
-          resourceGroupName: MTT-Demo-Actions
+          resourceGroupName: MTT-Demo-Action
           # Specify the path or URL to the Azure Resource Manager template.
           template: MTTDemo/Action/NewVM.json
           # Incremental (only add resources to resource group) or Complete (remove extra resources from resource group) or Validate (only validates the template).
