@@ -25,22 +25,12 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - name: Azure Login
-        uses: Azure/login@v1.4.4
-        with:
-          # Paste output of `az ad sp create-for-rbac` as value of secret variable: AZURE_CREDENTIALS
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-          # Azure subscriptionId
-          subscription-id: bbd6bca7-009c-4e7b-b6af-1e98c571eede
-          # Set this value to true to enable Azure PowerShell Login in addition to Az CLI login
-          enable-AzPSSession: # optional
-          # Name of the environment. Supported values are azurecloud, azurestack, azureusgovernment, azurechinacloud, azuregermancloud. Default being azurecloud
-          environment: azurecloud
-
       # Runs a single command using the runners shell
       - name: Deploy Azure Resource Manager (ARM) Template
         uses: Azure/arm-deploy@v1.0.8
         with:
+          # Set Azure credentials secret as an input
+          credentials: ${{ secrets.AZURE_CREDENTIALS }}
           # Provide the scope of the deployment. Valid values are: 'resourcegroup', 'managementgroup', 'subscription'
           scope: resourcegroup
           # Override the Subscription Id set by Azure Login.
